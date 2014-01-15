@@ -2,7 +2,7 @@
 Titanium.UI.setBackgroundColor('#000');
 
 var webview = Titanium.UI.createWebView({
-	url : '/helloworld.html'
+	url : '/test.html'
 });
 var window = Titanium.UI.createWindow();
 window.add(webview);
