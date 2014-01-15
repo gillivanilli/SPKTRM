@@ -30,9 +30,10 @@ Titanium.App.addEventListener("cameraButtonClick", function(e) {
 					title : "New Video",
 					backgroundColor : "#000000"
 				})
-
+				// Plays the video after recording
 				var videoPlayer = Titanium.Media.createVideoPlayer({
 					media : e.media
+					//hier würden theoretisch die abspiel einstellungen rein kommen
 				})
 				w.add(videoPlayer);
 				videoPlayer.addEventListener("complete", function(e) {
@@ -42,17 +43,38 @@ Titanium.App.addEventListener("cameraButtonClick", function(e) {
 				})
 			}
 		},
+		//couldn't start camera error
 		error : function(e) {
 			alert("There was an error");
 		},
+		//canceled error
 		cancel : function(e) {
 			alert("the function was cancelled");
 		},
+		//settings
 		allowEditing : true,
 		saveToPhotoGallery : true,
 		mediaTypes : [Titanium.Media.MEDIA_TYPE_PHOTO, Titanium.Media.MEDIA_TYPE_VIDEO],
 		videoQuality : Titanium.Media.QUALITY_HIGH
 	});
-}); 
+});
 
 //CAMERA API END -----------------------------------------------------------------------
+
+//Mikrofon "Start" ----------------------------------------------------------------------
+
+Titanium.App.addEventListener("MicrophoneStart", function(e) {
+	var recorder = Titanium.Media.createAudioRecorder();
+	recorder.start();
+});
+
+// Mikrofon Ende ------------------------------------------------------------------------
+
+//Mikrofon "Stop" ------------------------------------------------------------------------
+Titanium.App.addEventListener("MicrophoneStop", function(e) {
+	var recorder = Titanium.Media.createAudioRecorder();
+	recorder.start();
+});
+
+// Mikrofon Ende ------------------------------------------------------------------------
+

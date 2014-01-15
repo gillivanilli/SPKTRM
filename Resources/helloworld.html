@@ -13,6 +13,9 @@
 
 <div id="music">play Music</div>
 <div id="kamera">start kamera</div>
+<div id="startRecord">Start Record</div>
+<div id="stopRecord">Stop Record</div>
+
 
 <script type="text/javascript">
 
@@ -33,9 +36,24 @@
 	
 	cameraButton.addEventListener("click", function() {
 		Titanium.App.fireEvent("cameraButtonClick");
+	}, false);
+
+//start audio record
+	var start_record = document.getElementById("startRecord");
+	
+	cameraButton.addEventListener("click", function() {
+		Titanium.App.fireEvent("MicrophoneStart");
+	}, false);
+	
+// stop Audio record
+
+//start audio record
+	var stop_record = document.getElementById("stopRecord");
+	
+	cameraButton.addEventListener("click", function() {
+		Titanium.App.fireEvent("MicrophoneStop");
 	}, false)
 	
-	Titanium.App.addEventlistener("")
 
 </script>
 
