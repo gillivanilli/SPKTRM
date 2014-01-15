@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script type="text/javascript" src="/controllers/index.js"></script>
+<title>Title of the document</title>
+</head>
+
+<body>
+<p>Hello World</p>
+
+
+<div id="music">play Music</div>
+<div id="kamera">start kamera</div>
+
+<script type="text/javascript">
+
+// Music
+	var musicButton = document.getElementById('music');
+
+	musicButton.addEventListener("click", function(){ 
+		Titanium.App.fireEvent("musicButtonClick");
+	}, false);
+
+	Titanium.App.addEventListener("musicIsPlaying", function(){
+
+		alert('musicIsPlaying');
+	})
+
+//Camera
+	var cameraButton = document.getElementById("kamera");
+	
+	cameraButton.addEventListener("click", function() {
+		Titanium.App.fireEvent("cameraButtonClick");
+	}, false)
+	
+	Titanium.App.addEventlistener("")
+
+</script>
+
+
+</body>
+
+</html>
