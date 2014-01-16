@@ -41,17 +41,24 @@
 //start audio record
 	var start_record = document.getElementById("startRecord");
 	
-	cameraButton.addEventListener("click", function() {
-		Titanium.App.fireEvent("MicrophoneStart");
+	
+	
+	
+	
+	
+	start_record.addEventListener("click", function() {
+		
+		var start = {"status":"start"};
+		Titanium.App.fireEvent("MicrophoneStart", start);
 	}, false);
 	
 // stop Audio record
 
-//start audio record
 	var stop_record = document.getElementById("stopRecord");
 	
-	cameraButton.addEventListener("click", function() {
-		Titanium.App.fireEvent("MicrophoneStop");
+	stop_record.addEventListener("click", function() {
+		var stop = {"status":"stop"};
+		Titanium.App.fireEvent("MicrophoneStop",);
 	}, false)
 	
 

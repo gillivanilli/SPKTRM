@@ -61,19 +61,24 @@ Titanium.App.addEventListener("cameraButtonClick", function(e) {
 
 //CAMERA API END -----------------------------------------------------------------------
 
+
+
+
+
 //Mikrofon "Start" ----------------------------------------------------------------------
 
 Titanium.App.addEventListener("MicrophoneStart", function(e) {
-	var recorder = Titanium.Media.createAudioRecorder();
-	recorder.start();
+	alert(e.status);
+	 //var recorder = Titanium.Media.createAudioRecorder();
+	 //recorder.start();
 });
 
 // Mikrofon Ende ------------------------------------------------------------------------
 
 //Mikrofon "Stop" ------------------------------------------------------------------------
 Titanium.App.addEventListener("MicrophoneStop", function(e) {
-	var recorder = Titanium.Media.createAudioRecorder();
-	recorder.start();
+	recorder.stop();
+	
 });
 
 // Mikrofon Ende ------------------------------------------------------------------------
