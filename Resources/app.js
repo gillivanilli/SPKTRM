@@ -2,13 +2,14 @@
 Titanium.UI.setBackgroundColor('#000');
 
 var webview = Titanium.UI.createWebView({
-	url : '/test.html'
+	url : '/helloworld.html'
 });
 var window = Titanium.UI.createWindow();
 window.add(webview);
 window.open({
 	modal : true
 });
+Ti.API.info("udiowjio");
 
 //CAMERA API START -----------------------------------------------------------------------
 Titanium.App.addEventListener("cameraButtonClick", function(e) {
@@ -61,25 +62,53 @@ Titanium.App.addEventListener("cameraButtonClick", function(e) {
 
 //CAMERA API END -----------------------------------------------------------------------
 
-
-
-
-
 //Mikrofon "Start" ----------------------------------------------------------------------
 
+var recorder;
+var sound = Titanium.Media.createSound();
+
 Titanium.App.addEventListener("MicrophoneStart", function(e) {
-	alert(e.status);
-	 //var recorder = Titanium.Media.createAudioRecorder();
-	 //recorder.start();
+
+
+	if (recorder == null) {
+		recorder = Titanium.Media.createAudioRecorder();
+		Titanium.Media.audioSessionMode = Ti.Media.AUDIO_SESSION_MODE_PLAY_AND_RECORD;
+	}
+
+	if (e.status === "start") {
+		if (!recorder.recording) {
+			recorder.start();
+		}
+
+	} else if (e.status === "stop") {
+		if (!recorder.stopped) {
+			var recording = recorder.stop();
+
+			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "TestAufnahme.mp3");
+
+			file.write(recording);
+
+			if (file.exists) {
+				sound.url = file;
+			} else {
+				alert("file does not exist");
+			}
+
+		}
+
+	} else if (e.status === "pause") {
+		recorder.pause();
+	} else if (e.status === "play") {
+		sound.play();
+
+	}
+	Ti.API.info("Microphone Status: " + e.status);
+
 });
 
 // Mikrofon Ende ------------------------------------------------------------------------
 
 //Mikrofon "Stop" ------------------------------------------------------------------------
-Titanium.App.addEventListener("MicrophoneStop", function(e) {
-	recorder.stop();
-	
-});
 
 // Mikrofon Ende ------------------------------------------------------------------------
 
